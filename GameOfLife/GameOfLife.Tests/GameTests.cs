@@ -1,24 +1,22 @@
-namespace GameOfLife.Tests
+namespace GameOfLife.Tests;
+
+public class GameTests
 {
-    public class GameTests
+    [Test]
+    public void DeadCellWith0NeighboursStaysDead()
     {
-        [Test]
-        public void DeadCellWith0NeighboursStaysDead()
-        {
-            var game = new Game(3, 3);
-            game.Evolve();
-            Assert.That(game.IsCellAlive(1,1));
-        }
+        var game = new Game(3, 3);
+        game.Evolve();
+        Assert.That(game.IsCellAlive(1, 1), Is.False);
     }
 
-    public class Game
+    [Test]
+    public void DeadCellWith1NeighboursStaysDead()
     {
-        public Game(int rows, int columns)
-        {
+        Tuple<int, int>[] liveCells = [new(0, 1)];
 
-        }
-
-        public void Evolve() { throw new NotImplementedException(); }
-        public bool IsCellAlive(int row, int column) { throw new NotImplementedException(); }
+        var game = new Game(3, 3, liveCells);
+        game.Evolve();
+        Assert.That(game.IsCellAlive(1, 1), Is.False);
     }
 }
