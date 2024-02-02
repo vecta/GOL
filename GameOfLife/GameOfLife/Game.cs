@@ -14,6 +14,6 @@ public class Game
 
     public bool IsCellAlive(int row, int column)
     {
-        return true;
+        return false;
     }
 }
