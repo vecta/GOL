@@ -1,6 +1,6 @@
 ﻿namespace GameOfLife;
 
-public class Game(int rows, int columns, List<Cell> liveCells)
+public class Game(int rows, int columns, List<Cell> liveCells, IGrid grid = null)
 {
     public void Evolve()
     {
@@ -12,11 +12,17 @@ public class Game(int rows, int columns, List<Cell> liveCells)
             {
                 var liveNeighbours = GetNeighbourCount(row, column);
 
-                if (liveNeighbours == 3) newLiveCells.Add(new Cell(row, column));
+                if ((liveNeighbours == 2 && IsCellAlive(row, column)) || (liveNeighbours == 3))
+                    newLiveCells.Add(new Cell(row, column));
             }
         }
 
         liveCells = newLiveCells;
+    }
+
+    public void Start(int iterationCount)
+    {
+
     }
 
     private int GetNeighbourCount(int row, int column)
