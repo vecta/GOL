@@ -28,5 +28,17 @@ public class GameTests
         evolution2.Verify(g => g.Evolve(), Times.Never);
     }
 
+    [Test]
+    public void GameStopsIfCurrentAndPreviousIterationsAreEqual()
+    {
+        var evolution1 = new Mock<IGrid>();
+        var evolution2 = new Mock<IGrid>();
+        evolution1.Setup(g => g.Evolve()).Returns(evolution2.Object);
+        evolution2.Setup(grid => grid.Equals(evolution1.Object)).Returns(true);
 
+        var game = new Game(evolution1.Object);
+        game.Start(6);
+
+        evolution1.Verify(g => g.Evolve(), Times.Once);
+    }
 }
