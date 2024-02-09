@@ -6,8 +6,10 @@ public class Game(IGrid grid)
     {
         for (var iteration = 1; iteration <= iterationCount; iteration++)
         {
-            grid = grid.Evolve();
             if (grid.IsDead()) return;
+            var newGrid = grid.Evolve();
+            if (newGrid.Equals(grid)) return;
+            grid = newGrid;
         }
     }
 }
