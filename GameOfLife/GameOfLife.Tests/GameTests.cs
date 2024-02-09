@@ -14,7 +14,6 @@ public class GameTests
         grid.Verify(g => g.Evolve(), Times.Exactly(6));
     }
 
-
     [Test]
     public void GameStopsIfBoardBecomesEmpty()
     {
@@ -26,7 +25,7 @@ public class GameTests
         var game = new Game(evolution1.Object);
         game.Start(6);
         evolution1.Verify(g => g.Evolve(), Times.Exactly(1));
-        evolution2.Verify(g => g.Evolve(), Times.Exactly(1));
+        evolution2.Verify(g => g.Evolve(), Times.Never);
     }
 
 
