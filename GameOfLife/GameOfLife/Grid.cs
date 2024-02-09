@@ -32,5 +32,5 @@ public class Grid(int rows, int columns, List<Cell> liveCells) : IGrid
     }
 
     public bool IsCellAlive(int row, int column) { return liveCells.Contains(new Cell(row, column)); }
-    public bool IsDead() { throw new NotImplementedException(); }
+    public bool IsDead() { return true; }
 }
