@@ -2,6 +2,8 @@
 {
     public interface IGrid
     {
-        public void Evolve();
+        public IGrid Evolve();
+        bool IsCellAlive(int row, int column);
+        bool IsDead();
     }
 }
